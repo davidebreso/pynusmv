@@ -7,8 +7,10 @@ This module implements wrappers around the NuSMV list types:
 * :class:`Assoc` which stands for NuSMV's internal associative array 
          (hash_ptr and st_table*) 
 '''
-from collections import Iterator, Iterable
-
+try:
+    from collections.abc import Iterator, Iterable
+except ImportError:
+    from collections import Iterator, Iterable
 from pynusmv_lower_interface.nusmv.utils import utils as _utils
 from pynusmv_lower_interface.nusmv.node  import node as _node
 from pynusmv.utils import PointerWrapper

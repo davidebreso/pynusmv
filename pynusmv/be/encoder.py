@@ -24,7 +24,10 @@ from pynusmv_lower_interface.nusmv.enc.base import base as _base
 from pynusmv_lower_interface.nusmv.enc.bool import bool  as _bool
 
 from enum                   import IntEnum
-from collections            import Iterator 
+try:
+    from collections.abc    import Iterator
+except ImportError:
+    from collections        import Iterator 
 from pynusmv.node           import Node
 from pynusmv.utils          import PointerWrapper, indexed
 from pynusmv.collections    import NodeList  

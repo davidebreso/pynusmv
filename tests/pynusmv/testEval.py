@@ -3,15 +3,23 @@ import unittest
 from pynusmv.init import init_nusmv, deinit_nusmv
 from pynusmv import glob
 from pynusmv.mc import eval_simple_expression
+from pynusmv.exception import NuSMVInitError
 
 
 class TestEval(unittest.TestCase):
     
     def setUp(self):
-        init_nusmv()
+        try:
+            init_nusmv()
+        except NuSMVInitError:
+            print("NuSVM already initialized")
+        
     
     def tearDown(self):
-        deinit_nusmv()
+        try:
+            deinit_nusmv()
+        except NuSMVInitError:
+            print("NuSVM already initialized")
     
     
     def model(self):

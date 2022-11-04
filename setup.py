@@ -15,7 +15,7 @@ from setuptools.extension          import Extension
 from setuptools.command.build_ext  import build_ext
 # Command to perform a build then run the tests
 from setuptools.command.test       import test
-
+    
 import os
 import os.path
 import sys
@@ -1098,5 +1098,5 @@ setup(name             = 'pynusmv',
       },
       # TESTS
       test_suite='nose.collector',
-      tests_require=['nose']
+      tests_require=['nose-py3 == 1.4.0']
 )
