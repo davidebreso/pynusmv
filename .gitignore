@@ -29,6 +29,7 @@ build/*
 dist/*
 pynusmv.egg-info/*
 .eggs/*
+wheelhouse/
 
 # Ignore all compiled test artifacts
 tests/__pycache__/*
