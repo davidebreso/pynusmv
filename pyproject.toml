@@ -5,10 +5,6 @@ build = ["cp39-*", "cp310-*", "cp311-*"]
 # Skip muslinux builds
 skip = "*musllinux*"
 
-[tool.cibuildwheel.macos]
-# Install system library
-before-all = ["brew update", "brew install expat readline", "brew upgrade"]
-
 [tool.cibuildwheel.linux]
 # Install system library
 before-all = "yum install -y flex"
