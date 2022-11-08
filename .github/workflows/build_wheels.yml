@@ -1,6 +1,9 @@
 name: Build Wheels
 
-on: push
+on:
+  push:
+    tags:
+      - "v*.*"
 
 jobs:
   build_wheels:
@@ -23,6 +26,8 @@ jobs:
         #   output-dir: wheelhouse
             config-file: "{package}/pyproject.toml"
 
-      - uses: actions/upload-artifact@v3
+      - name: Release wheels
+        uses: softprops/action-gh-release@v1
+        if: startsWith(github.ref, 'refs/tags/')
         with:
-          path: ./wheelhouse/*.whl
+          files: ./wheelhouse/*.whl
