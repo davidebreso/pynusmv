@@ -108,9 +108,10 @@ class SharedLibBuilder:
         :return: True iff libname is a system library available at link time
         '''
         if platform.system() == 'Darwin':
-            # Checking with ld does not work on Mac OS Big Sur, so always return True
-            return True
-        cmd = "ld -l{}".format(libname)
+            # On Mac OS, use `gcc -l` to check for libraries, since ld does not work on Big Sur
+            cmd = "gcc -l{}".format(libname)
+        else:
+            cmd = "ld -l{}".format(libname)
         sub = subprocess.getoutput(cmd)
         return self.lib_not_found() not in str(sub)
 
