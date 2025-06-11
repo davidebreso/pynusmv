@@ -665,7 +665,7 @@ LIBRARIES = {
 # for each of the extensions we generate
 EXTENSION_ARGS = dict({
     # The swig specific arguments
-    'swig_opts'         : ['-py3'] + [ '-I{}'.format(inc) for inc in INCLUDES ],
+    'swig_opts'         : [ '-I{}'.format(inc) for inc in INCLUDES ],
     'include_dirs'      : INCLUDES,
     'extra_compile_args': ['-g', '-fPIC'],
     'extra_link_args'   : ['-Llib']
