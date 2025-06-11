@@ -12,6 +12,6 @@ archs = "x86_64 arm64 universal2"
 
 [tool.cibuildwheel.linux]
 # Install system library
-#before-all = "yum install -y flex"
+before-all = "sudo apt-get update && sudo apt-get install -y swig"
 # Build only x86_64 architecture
 archs = ["x86_64"]
