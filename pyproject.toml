@@ -1,7 +1,7 @@
 [project]
 name = "pynusmv"
 version = "v1.0rc8"
-dependecies = ["swig"]
+dependencies = ["swig"]
 
 [tool.cibuildwheel]
 # Only build on CPython 3.9, 3.10, 3.11, 3.12, and 3.13
