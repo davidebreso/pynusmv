@@ -11,7 +11,7 @@
   PyObject* ret = PyList_New((Py_ssize_t) 0);
 
   while(*ptr!=NULL){
-    PyList_Append(ret, PyInt_FromLong((long)*ptr));
+    PyList_Append(ret, PyLong_FromLong((long)*ptr));
     ptr++;
   }
 

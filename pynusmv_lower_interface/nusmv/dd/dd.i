@@ -50,7 +50,7 @@ typedef enum {
 
 %typemap(argout) dd_reorderingtype * method {
     PyObject *o, *o2, *o3;
-    o = PyInt_FromLong(*$1);
+    o = PyLong_FromLong(*$1);
     if (!$result) {
         $result = o;
     } else {

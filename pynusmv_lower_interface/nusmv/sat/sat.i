@@ -29,11 +29,11 @@
  */
 /* conversion from python to swig */
 %typemap(in) SatSolverGroup {
-	$1 = (SatSolverGroup) PyInt_AsLong($input);
+	$1 = (SatSolverGroup) PyLong_AsLong($input);
 }
 /* conversion from swig to python */
 %typemap(out) SatSolverGroup {
-	$result = PyInt_FromLong((long) $1);
+	$result = PyLong_FromLong((long) $1);
 }
 /******************************************************************************/
 

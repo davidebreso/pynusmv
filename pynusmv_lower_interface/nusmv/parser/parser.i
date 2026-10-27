@@ -31,7 +31,7 @@ EXTERN int yylineno;
 
 %typemap(argout) int* error {
     PyObject *o, *o2, *o3;
-    o = PyInt_FromLong(*$1);
+    o = PyLong_FromLong(*$1);
     if (!$result) {
         $result = o;
     } else {
