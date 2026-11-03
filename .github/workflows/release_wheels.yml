@@ -1,0 +1,37 @@
+name: Release Wheels
+
+on:
+  push:
+    tags:
+      - "v*.*"
+  workflow_dispatch:
+
+jobs:
+  build_wheels:
+    name: Release wheels on ${{ matrix.os }}
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        include:
+          - os: ubuntu-latest
+            macos_arch: auto
+          - os: macos-latest
+            macos_arch: arm64
+          - os: macos-15-intel
+            macos_arch: x86_64
+
+    steps:
+      - uses: actions/checkout@v7
+
+      - name: Build wheels
+        uses: pypa/cibuildwheel@v4.3.4
+        env:
+          CIBW_ARCHS_MACOS: ${{ matrix.macos_arch }}
+        with:
+          config-file: "{package}/pyproject.toml"
+
+      - name: Release wheels
+        uses: softprops/action-gh-release@v3
+        if: startsWith(github.ref, 'refs/tags/')
+        with:
+          files: ./wheelhouse/*.whl

@@ -12,7 +12,13 @@ jobs:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        os: [ubuntu-latest, macos-latest]
+        include:
+          - os: ubuntu-latest
+            macos_arch: auto
+          - os: macos-latest
+            macos_arch: arm64
+          - os: macos-15-intel
+            macos_arch: x86_64
 
     steps:
       - uses: actions/checkout@v7
@@ -20,16 +26,12 @@ jobs:
       - name: Build wheels
         uses: pypa/cibuildwheel@v4.3.4
         env:
-            CIBW_ARCHS_MACOS: x86_64 arm64
-        #   CIBW_SOME_OPTION: value
-        #    ...
+          CIBW_ARCHS_MACOS: ${{ matrix.macos_arch }}
         with:
-        #   package-dir: .
-        #   output-dir: wheelhouse
-            config-file: "{package}/pyproject.toml"
+          config-file: "{package}/pyproject.toml"
 
-      - name: Release wheels
-        uses: softprops/action-gh-release@v3
-        if: startsWith(github.ref, 'refs/tags/')
+      - name: Upload wheels
+        uses: actions/upload-artifact@v4
         with:
-          files: ./wheelhouse/*.whl
+          name: wheels-${{ matrix.os }}
+          path: ./wheelhouse/*.whl
