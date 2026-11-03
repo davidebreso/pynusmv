@@ -97,7 +97,7 @@
  # New native compiler for the Alphas; 32-bit pointers.
  #XCFLAGS	= -g3 -O4 -std -DBSD -DHAVE_IEEE_754 -ieee_with_no_inexact -tune host -xtaso -DNUSMV_SIZEOF_LONG=8
 --- NuSMV-2.5.4/cudd-2.4.1.1/Makefile_64bit	2011-10-12 11:05:19.000000000 +0200
-+++ CUDD/Makefile_64bit	2016-12-16 10:44:19.000000000 +0100
++++ CUDD/Makefile_64bit	2026-11-03 01:29:37.433178119 +0100
 @@ -1,6 +1,6 @@
  # $Id: Makefile_64bit,v 1.1.2.2 2010-02-04 10:48:28 nusmv Exp $
  #
@@ -111,10 +111,19 @@
  # last two also work with icc/ecc.
  #ICFLAGS	= -g -O6 -Wall
 -ICFLAGS	= -g -O6
-+ICFLAGS	= -g -O6 -fPIC
++ICFLAGS	= -g -O6 -fPIC -std=gnu17
  #ICFLAGS	= -g -O3 -Wall
  #ICFLAGS	= -g -O3
  
+@@ -73,7 +73,7 @@
+ # Icc on i686.
+ #XCFLAGS	= -ansi -align -ip -DHAVE_IEEE_754 -DBSD
+ # Gcc on ia64.
+-XCFLAGS	= -DHAVE_IEEE_754 -DBSD -DNUSMV_SIZEOF_VOID_P=8 -DNUSMV_SIZEOF_LONG=8 -DNUSMV_SIZEOF_INT=4
++XCFLAGS	= -DHAVE_IEEE_754 -DBSD -DNUSMV_SIZEOF_VOID_P=8 -DNUSMV_SIZEOF_LONG=8 -DNUSMV_SIZEOF_INT=4 -DHAVE_UNISTD_H
+ # Icc/ecc on ia64.
+ #XCFLAGS = -ansi -DBSD -DHAVE_IEEE_754 -DNUSMV_SIZEOF_VOID_P=8 -DNUSMV_SIZEOF_LONG=8 -DNUSMV_SIZEOF_INT=4
+ #
 @@ -121,7 +121,7 @@
  #XCFLAGS	= -DBSD -DHAVE_IEEE_754 -ieee_with_no_inexact -tune host -DNUSMV_SIZEOF_VOID_P=8 -DNUSMV_SIZEOF_LONG=8
  # Old native compiler for the Alphas; 32-bit pointers.

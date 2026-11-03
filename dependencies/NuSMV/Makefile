@@ -62,7 +62,7 @@ ifeq ($(RECONFIGURE), yes)
 	#       before proceeding to the rest of the compilation.
 	cd $(NUSMV) && ./configure  $(solvers_config) \
 															--with-pic \
-															CFLAGS="-g -fPIC" \
+															CFLAGS="-std=gnu17 -g -fPIC" \
 														  CXXFLAGS="-g -fPIC"
 
 	python3 ./reconfiguration_needed.py --save
